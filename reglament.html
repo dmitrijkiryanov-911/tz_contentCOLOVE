@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Регламент — Создание ТЗ на контент</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #f7f6f2; color: #1a1a1a; padding: 40px 20px 80px; }
+  .page { max-width: 680px; margin: 0 auto; }
+
+  .cover { background: #1a1a1a; color: #fff; border-radius: 16px; padding: 36px 40px; margin-bottom: 28px; position: relative; overflow: hidden; }
+  .cover::after { content: ''; position: absolute; right: -40px; top: -40px; width: 200px; height: 200px; background: #534AB7; border-radius: 50%; opacity: .15; }
+  .cover-badge { font-size: 11px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; color: #AFA9EC; margin-bottom: 12px; }
+  .cover-title { font-size: 26px; font-weight: 700; margin-bottom: 6px; line-height: 1.2; }
+  .cover-sub { font-size: 14px; color: #888; margin-top: 6px; }
+
+  .section { background: #fff; border: 1px solid #e8e5de; border-radius: 14px; padding: 24px 28px; margin-bottom: 12px; }
+  .sec-head { display: flex; align-items: center; gap: 14px; margin-bottom: 18px; padding-bottom: 14px; border-bottom: 1px solid #f0ede6; }
+  .sec-icon { width: 36px; height: 36px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0; }
+  .ic1 { background: #EEEDFE; }
+  .ic2 { background: #E1F5EE; }
+  .ic3 { background: #FAECE7; }
+  .ic4 { background: #FBEAF0; }
+  .ic5 { background: #FEF6E7; }
+  .ic6 { background: #F1EFE8; }
+  .sec-label { font-size: 16px; font-weight: 700; color: #1a1a1a; }
+  .sec-desc { font-size: 12px; color: #999; margin-top: 2px; }
+
+  .step { display: flex; gap: 14px; margin-bottom: 16px; }
+  .step:last-child { margin-bottom: 0; }
+  .step-num { width: 26px; height: 26px; border-radius: 50%; background: #EEEDFE; color: #3C3489; font-size: 12px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px; }
+  .step-body { flex: 1; }
+  .step-title { font-size: 14px; font-weight: 600; color: #1a1a1a; margin-bottom: 4px; }
+  .step-text { font-size: 13px; color: #555; line-height: 1.6; }
+
+  .tip { background: #EEEDFE; border-radius: 10px; padding: 14px 16px; margin-top: 12px; display: flex; gap: 10px; align-items: flex-start; }
+  .tip-icon { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+  .tip-text { font-size: 13px; color: #3C3489; line-height: 1.6; }
+
+  .warn { background: #FAECE7; border-radius: 10px; padding: 14px 16px; margin-top: 12px; display: flex; gap: 10px; align-items: flex-start; }
+  .warn-icon { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+  .warn-text { font-size: 13px; color: #712B13; line-height: 1.6; }
+
+  .success { background: #E1F5EE; border-radius: 10px; padding: 14px 16px; margin-top: 12px; display: flex; gap: 10px; align-items: flex-start; }
+  .success-icon { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+  .success-text { font-size: 13px; color: #085041; line-height: 1.6; }
+
+  .link-box { background: #f5f4f0; border: 1px solid #e0ddd6; border-radius: 8px; padding: 10px 14px; font-size: 13px; margin-top: 8px; word-break: break-all; }
+  .link-box a { color: #534AB7; font-weight: 500; }
+
+  .blocks-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 4px; }
+  .block-item { background: #f5f4f0; border-radius: 8px; padding: 10px 12px; }
+  .block-name { font-size: 12px; font-weight: 600; color: #1a1a1a; margin-bottom: 3px; }
+  .block-desc { font-size: 11px; color: #888; line-height: 1.4; }
+
+  .required { display: inline-block; background: #FAECE7; color: #712B13; font-size: 10px; font-weight: 600; padding: 2px 7px; border-radius: 10px; margin-left: 6px; vertical-align: middle; }
+  .optional { display: inline-block; background: #f0ede6; color: #888; font-size: 10px; font-weight: 600; padding: 2px 7px; border-radius: 10px; margin-left: 6px; vertical-align: middle; }
+
+  .divider { height: 1px; background: #f0ede6; margin: 16px 0; }
+
+  @media (max-width: 540px) { .blocks-grid { grid-template-columns: 1fr; } .cover { padding: 24px 20px; } .section { padding: 18px 20px; } }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="cover">
+    <div class="cover-badge">Регламент · Отдел продаж</div>
+    <div class="cover-title">Создание ТЗ на контент для дизайнера</div>
+    <div class="cover-sub">Инструкция для менеджера по продажам</div>
+  </div>
+
+  <!-- Зачем это нужно -->
+  <div class="section">
+    <div class="sec-head">
+      <div class="sec-icon ic1">💡</div>
+      <div>
+        <div class="sec-label">Зачем это нужно</div>
+        <div class="sec-desc">Контекст и цель</div>
+      </div>
+    </div>
+    <div class="step-text">
+      Качество контента напрямую зависит от того, насколько чётко дизайнер понимает задачу. Чем подробнее ТЗ — тем меньше правок и итераций, тем быстрее карточка выходит в работу.
+    </div>
+    <div class="tip" style="margin-top: 14px;">
+      <div class="tip-icon">📌</div>
+      <div class="tip-text">Не нужно заполнять все пункты идеально — но чем больше информации ты передашь дизайнеру, тем точнее он попадёт в нужный стиль и формат с первого раза.</div>
+    </div>
+  </div>
+
+  <!-- Шаг 1: Анализ конкурентов -->
+  <div class="section">
+    <div class="sec-head">
+      <div class="sec-icon ic2">🔍</div>
+      <div>
+        <div class="sec-label">Шаг 1 — Анализ конкурентов</div>
+        <div class="sec-desc">Перед заполнением формы</div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">1</div>
+      <div class="step-body">
+        <div class="step-title">Найди 3–4 конкурента в нише</div>
+        <div class="step-text">Зайди на Wildberries или Ozon, найди похожие товары с высоким рейтингом и хорошими продажами.</div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <div class="step-body">
+        <div class="step-title">Изучи их контент</div>
+        <div class="step-text">Посмотри: сколько фото в карточке, какие ракурсы используются, есть ли инфографика, какой стиль съёмки — студия или улица, светлый или тёмный фон.</div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <div class="step-body">
+        <div class="step-title">Отметь что работает</div>
+        <div class="step-text">Для каждого конкурента кратко запиши — что именно хочешь взять за образец. Например: «хорошие детали ткани крупным планом» или «классная размерная сетка».</div>
+      </div>
+    </div>
+    <div class="tip">
+      <div class="tip-icon">💬</div>
+      <div class="tip-text">Ссылки на конкурентов — один из самых важных пунктов. Дизайнер сможет сразу понять уровень и стиль контента в нише.</div>
+    </div>
+  </div>
+
+  <!-- Шаг 2: Заполнение формы -->
+  <div class="section">
+    <div class="sec-head">
+      <div class="sec-icon ic3">📝</div>
+      <div>
+        <div class="sec-label">Шаг 2 — Заполни форму ТЗ</div>
+        <div class="sec-desc">Ссылка на форму ниже</div>
+      </div>
+    </div>
+
+    <div class="step-text" style="margin-bottom: 14px;">Открой форму и заполни все блоки:</div>
+    <div class="link-box"><a href="https://colove.yonote.ru/share/shablon_tz_content" target="_blank">colove.yonote.ru/share/shablon_tz_content</a></div>
+
+    <div class="divider"></div>
+
+    <div class="blocks-grid">
+      <div class="block-item">
+        <div class="block-name">01 · Основная информация <span class="required">важно</span></div>
+        <div class="block-desc">Название товара, категория, ссылка на карточку, краткое описание ЦА</div>
+      </div>
+      <div class="block-item">
+        <div class="block-name">02 · Контентная воронка <span class="required">важно</span></div>
+        <div class="block-desc">Конкуренты, стиль съёмки, кол-во фото, ракурсы, референсы</div>
+      </div>
+      <div class="block-item">
+        <div class="block-name">03 · Инфографика <span class="optional">по наличию</span></div>
+        <div class="block-desc">Размерная сетка, состав ткани, УТП — заполни если нужна инфографика</div>
+      </div>
+      <div class="block-item">
+        <div class="block-name">04 · Обложки CTR <span class="required">важно</span></div>
+        <div class="block-desc">Референсы обложек, кол-во вариантов, что показать</div>
+      </div>
+      <div class="block-item">
+        <div class="block-name">05 · Дедлайн <span class="required">важно</span></div>
+        <div class="block-desc">Срок, приоритет, порядок задач, имя менеджера</div>
+      </div>
+    </div>
+
+    <div class="tip" style="margin-top: 14px;">
+      <div class="tip-icon">✅</div>
+      <div class="tip-text">Некоторые пункты можно пропустить — например, если инфографика не нужна, блок 03 можно не заполнять. Но старайся заполнить форму максимально подробно: дизайнер должен понять стиль и формат контента без дополнительных вопросов.</div>
+    </div>
+  </div>
+
+  <!-- Шаг 3: Публикация -->
+  <div class="section">
+    <div class="sec-head">
+      <div class="sec-icon ic4">📤</div>
+      <div>
+        <div class="sec-label">Шаг 3 — Опубликуй ТЗ</div>
+        <div class="sec-desc">Получи ссылку для дизайнера</div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">1</div>
+      <div class="step-body">
+        <div class="step-title">Нажми кнопку «Опубликовать ТЗ и получить ссылку»</div>
+        <div class="step-text">Кнопка находится в самом низу формы. После нажатия система около 10 секунд обрабатывает данные.</div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <div class="step-body">
+        <div class="step-title">Скопируй ссылку из появившегося окна</div>
+        <div class="step-text">После публикации появится всплывающее окно со ссылкой вида <strong>dmitrijkiryanov-911.github.io/tz_contentCOLOVE/tz-na-kontent/название-товара-...</strong></div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <div class="step-body">
+        <div class="step-title">Проверь, что ссылка открывается</div>
+        <div class="step-text">Нажми «Открыть» — страница должна загрузиться. Если видишь ошибку <strong>404 (File not found)</strong> — подожди 2–3 минуты и обнови страницу. Это нормально: GitHub Pages нужно время на публикацию.</div>
+      </div>
+    </div>
+    <div class="warn">
+      <div class="warn-icon">⚠️</div>
+      <div class="warn-text"><strong>Не отправляй ссылку дизайнеру пока страница не открылась.</strong> Сначала убедись что ТЗ отображается корректно — только после этого отправляй в чат задачи.</div>
+    </div>
+  </div>
+
+  <!-- Шаг 4: Отправка -->
+  <div class="section">
+    <div class="sec-head">
+      <div class="sec-icon ic5">💬</div>
+      <div>
+        <div class="sec-label">Шаг 4 — Отправь дизайнеру</div>
+        <div class="sec-desc">В чат родительской задачи</div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">1</div>
+      <div class="step-body">
+        <div class="step-title">Открой родительскую задачу в таск-трекере</div>
+        <div class="step-text">Найди задачу по данному товару и перейди в её чат.</div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <div class="step-body">
+        <div class="step-title">Напиши сообщение с упоминанием дизайнера</div>
+        <div class="step-text">Используй <strong>@имя_дизайнера</strong> и вставь ссылку на ТЗ. Пример сообщения:</div>
+        <div style="background:#f5f4f0;border-radius:8px;padding:12px 14px;margin-top:8px;font-size:13px;color:#444;line-height:1.6;border-left:3px solid #534AB7;">
+          @дизайнер, ТЗ на контент готово 👇<br>
+          <span style="color:#534AB7">ссылка на ТЗ</span><br><br>
+          Приоритет: срочно / обычный / низкий<br>
+          Дедлайн: дата
+        </div>
+      </div>
+    </div>
+    <div class="success">
+      <div class="success-icon">✅</div>
+      <div class="success-text">После отправки задача считается переданной в дизайн. Если дизайнер не взял задачу в работу в течение рабочего дня — уточни статус.</div>
+    </div>
+  </div>
+
+  <!-- Частые вопросы -->
+  <div class="section">
+    <div class="sec-head">
+      <div class="sec-icon ic6">❓</div>
+      <div>
+        <div class="sec-label">Частые вопросы</div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num" style="background:#F1EFE8;color:#444">?</div>
+      <div class="step-body">
+        <div class="step-title">Нажал публикацию, но вижу ошибку</div>
+        <div class="step-text">Попробуй ещё раз через минуту. Если не помогает — напиши руководителю.</div>
+      </div>
+    </div>
+    <div class="divider"></div>
+    <div class="step">
+      <div class="step-num" style="background:#F1EFE8;color:#444">?</div>
+      <div class="step-body">
+        <div class="step-title">Ссылка показывает 404 уже больше 5 минут</div>
+        <div class="step-text">Обнови страницу через Ctrl+Shift+R. Если всё равно 404 — напиши руководителю, возможно техническая проблема.</div>
+      </div>
+    </div>
+    <div class="divider"></div>
+    <div class="step">
+      <div class="step-num" style="background:#F1EFE8;color:#444">?</div>
+      <div class="step-body">
+        <div class="step-title">Не знаю что писать в поле «Стиль контента»</div>
+        <div class="step-text">Посмотри на конкурентов которых добавил и опиши что видишь: светлый или тёмный фон, модель или продукт, студия или улица, минимализм или много деталей.</div>
+      </div>
+    </div>
+    <div class="divider"></div>
+    <div class="step">
+      <div class="step-num" style="background:#F1EFE8;color:#444">?</div>
+      <div class="step-body">
+        <div class="step-title">Нужно внести правки в уже отправленное ТЗ</div>
+        <div class="step-text">Заполни форму заново с исправлениями и опубликуй — получишь новую ссылку. Отправь её в чат задачи с пометкой «Обновлённое ТЗ».</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
