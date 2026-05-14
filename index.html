@@ -150,6 +150,19 @@
     <div class="field"><label>Параметры модели на фото</label><input type="text" id="f-model-params" placeholder="Рост 173, грудь 87, талия 63, бёдра 90, размер на фото S/44"></div>
     <div class="field"><label>Состав ткани</label><input type="text" id="f-fabric" placeholder="Например: 100% лён / 60% хлопок, 40% полиэстер"></div>
     <div class="field"><label>Стиль инфографики + референсы</label><textarea id="f-info-style" placeholder="Минималистичная таблица, иконки с подписями — опиши или дай ссылки"></textarea></div>
+    <div class="sep"></div>
+    <div class="field">
+      <label>УТП / Преимущества — что важно показать в инфографике</label>
+      <textarea id="f-utp" placeholder="Например: износостойкая ткань, не мнётся, подходит для любой фигуры, российское производство — что выделяет товар и должно попасть в инфографику"></textarea>
+    </div>
+    <div class="field">
+      <label>Примеры инфографики с УТП (референсы)</label>
+      <div class="ref-block" id="utp-refs">
+        <div class="ref-row"><div class="ref-num">1</div><div class="ref-inputs"><input type="text" placeholder="Ссылка на пример"><input type="text" placeholder="Что взять из этого примера"></div></div>
+        <div class="ref-row"><div class="ref-num">2</div><div class="ref-inputs"><input type="text" placeholder="Ссылка на пример"><input type="text" placeholder="Что взять из этого примера"></div></div>
+      </div>
+      <button class="add-btn" onclick="addUtpRef()">+ Добавить пример</button>
+    </div>
   </div>
 
   <!-- 04 -->
@@ -244,6 +257,14 @@
     list.appendChild(row);
   }
 
+  function addUtpRef() {
+    const list = document.getElementById('utp-refs');
+    const n = list.children.length + 1;
+    const row = document.createElement('div'); row.className = 'ref-row';
+    row.innerHTML = `<div class="ref-num">${n}</div><div class="ref-inputs"><input type="text" placeholder="Ссылка на пример"><input type="text" placeholder="Что взять из этого примера"></div>`;
+    list.appendChild(row);
+  }
+
   function addCoverRef() {
     const list = document.getElementById('cover-refs');
     const n = list.children.length + 1;
@@ -287,6 +308,7 @@
     const coverTypes = getSelected('cover-types');
     const comps      = getRefRows('comp-list');
     const coverRefs  = getRefRows('cover-refs');
+    const utpRefs    = getRefRows('utp-refs');
 
     return `<!DOCTYPE html>
 <html lang="ru"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
@@ -363,6 +385,8 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#f7f6f2;color:#1a1a
     ${rowHTML('Параметры модели', v('f-model-params'))}
     ${rowHTML('Состав ткани', v('f-fabric'))}
     ${rowHTML('Стиль и референсы', v('f-info-style'))}
+    ${rowHTML('УТП / Преимущества', v('f-utp'))}
+    <div class="r"><span class="rl">Примеры инфографики с УТП</span><span class="rv">${utpRefs.length?`<div class="ref-list">${utpRefs.map(c=>`<div class="ref-item"><div class="ref-n">#${c.n}</div><div class="ref-link"><a href="${c.a}" target="_blank">${c.a}</a></div><div class="ref-comment">${c.b}</div></div>`).join('')}</div>`:'<span class="empty">Не указаны</span>'}</span></div>
   </div>
   <div class="section">
     <div class="sec-head"><div class="sec-num n4">04</div><div><div class="sec-label">Обложки для теста CTR</div><div class="sec-desc">Референсы, ракурс, количество</div></div></div>
